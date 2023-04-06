@@ -20,9 +20,23 @@ export class CourseCardComponent implements OnInit {
 
   constructor() {}
 
+  ngOnInit() {}
+
   onCourseViewed() {
     this.courseSelected.emit(this.course);
   }
 
-  ngOnInit() {}
+  cardClasses() {
+    if (this.course.category == "BEGINNER") {
+      return ["beginner"];
+    }
+    // return {
+    //   // beginner: false,
+    //   beginner: this.course.category == "BEGINNER",
+    // };
+  }
+
+  cardStyles() {
+    return { "text-decoration": "underline" };
+  }
 }
