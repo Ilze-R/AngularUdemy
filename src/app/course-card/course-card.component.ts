@@ -9,6 +9,7 @@ import {
   OnInit,
   Output,
   QueryList,
+  TemplateRef,
 } from "@angular/core";
 import { CourseImageComponent } from "../course-image/course-image.component";
 import { Course } from "../model/course";
@@ -23,6 +24,9 @@ export class CourseCardComponent
 {
   // @Input()
   // title: string;
+  @Input()
+  noImageTpl: TemplateRef<any>;
+
   @Input()
   course: Course;
 

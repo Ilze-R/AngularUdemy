@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Input,
   QueryList,
+  TemplateRef,
   ViewChild,
   ViewChildren,
 } from "@angular/core";
@@ -27,6 +29,7 @@ export class AppComponent implements AfterViewInit {
 
   // @ViewChild(CourseCardComponent)
   // to get access to individual component display (in case if multiple exist)
+
   @ViewChild("cardRef1")
   card1: CourseCardComponent;
 
