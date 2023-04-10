@@ -1,4 +1,5 @@
 <div class="top-menu">
+  <button (click)="onCoursesEdited()">Edit Courses</button>
   <img
     class="logo"
     src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
@@ -12,20 +13,36 @@
   <div>{{ price | currency : "EUR" }}</div>
 </div>
 
-<div class="courses" #container>
+<div class="courses" #containe *ngIf="courses[0] as course">
   <!-- <course-card [title]="coreCourse.description"></course-card> -->
   <course-card
     #cardRef1
     (courseSelected)="onCourseSelected($event)"
-    [course]="courses[0]"
-  ></course-card>
+    [course]="course"
+  >
+    <course-image [src]="course.iconUrl"></course-image>
+    <course-image [src]="courses[1].iconUrl"></course-image>
+    <course-image [src]="courses[2].iconUrl"></course-image>
+    <!-- <div class="course-image" #courseImage>
+    <img width="300" alt="Angular Logo" [src]="course.iconUrl" />
+    <h5>total Lessons: 5</h5>
+  </div> -->
+
+    <div class="course-description">
+      {{ course.description }}
+    </div>
+
+    Edit Description: <textarea></textarea>
+  </course-card>
   <course-card
     #cardRef2
     (courseSelected)="onCourseSelected($event)"
     [course]="courses[1]"
-  ></course-card>
-  <course-card
+  >
+    <h5>total Lessons: 10</h5></course-card
+  >
+  <!-- <course-card
     (courseSelected)="onCourseSelected($event)"
     [course]="courses[2]"
-  ></course-card>
+  ></course-card>  -->
 </div>

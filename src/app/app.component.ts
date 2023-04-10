@@ -1,4 +1,11 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from "@angular/core";
 import { COURSES } from "../db-data";
 import { CourseCardComponent } from "./course-card/course-card.component";
 import { Course } from "./model/course";
@@ -8,7 +15,14 @@ import { Course } from "./model/course";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  constructor() {}
+
+  //the earliest
+  ngAfterViewInit() {
+    this.cards.changes.subscribe((cards) => console.log(cards));
+  }
+
   courses = COURSES;
 
   // @ViewChild(CourseCardComponent)
@@ -24,8 +38,24 @@ export class AppComponent {
   @ViewChild("container")
   containerDiv: ElementRef;
 
+  @ViewChildren(CourseCardComponent)
+  cards: QueryList<CourseCardComponent>;
+
   startDate = new Date(2000, 0, 1);
   price = 9.99;
+
+  onCoursesEdited() {
+    this.courses.push({
+      id: 1,
+      description: "Angular Core Deep Dive",
+      iconUrl:
+        "https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png",
+      longDescription:
+        "A detailed walk-through of the most important part of Angular - the Core and Common modules",
+      category: "INTERMEDIATE",
+      lessonsCount: 10,
+    });
+  }
 
   onCourseSelected(course: Course) {
     console.log("card1", this.card1);
